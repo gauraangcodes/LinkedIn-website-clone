@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width,initial-scale=1.0">
+    <title>sign up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+</head>
+
+
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        background: #f5f5f5;
+    }
+
+    .parent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid black;
+        height: 700px;
+
+    }
+
+    .child {
+        border: 3px solid black;
+        width: 270px;
+        height: 250px;
+        padding: 50px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        border-radius: 20px;
+        animation: fade 0.9s ease;
+    }
+
+    @keyframes fade {
+
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    }
+
+    .hidden-inp {
+        display: none;
+    }
+
+    .signin {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 0px;
+    }
+
+    .req {
+        color: rgb(121, 121, 121);
+        margin-bottom: 20px;
+        font-size: small;
+    }
+
+    .signup {
+        background-color: chartreuse;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 999px;
+        color: rgb(100, 97, 97);
+        transition: 1s;
+    }
+
+    .signup:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+
+    .h1js {
+        font-family: 'Roboto', monospace, sans-serif;
+        font-size: medium;
+        color: #e53935;
+    }
+
+    .searchbar {
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #999;
+        transition: 0.3s;
+        margin-bottom: 12px;
+        overflow: hidden;
+    }
+
+    .searchbar:focus {
+        background-color: #C9EBED;
+        padding: 4px;
+        border-bottom: 1px solid black;
+    }
+
+    .go-btn {
+        display: none;
+        border: none;
+        border-radius: 999px;
+        background-color: rgb(122, 235, 9);
+        color: #999;
+        padding: 12px 32px;
+        width: 200px;
+        cursor: pointer;
+        transition: 1s;
+    }
+
+    .go-btn:hover {
+        padding: 12px 24px;
+    }
+
+    .text-color {
+        color: blue;
+    }
+</style>
+
+<body>
+    <div class="parent">
+        <div class="child">
+            <p class="signin">
+                Please enter your email
+            </p>
+            <P class="req">
+                (required for the sign up)
+            </P>
+            <button class="signup" id="btn">
+                Click to enter your email
+            </button>
+            <input class="hidden-inp" id="input" type="email" placeholder="xyz@123gmail.com"
+                pattern=".+@(gmail\.com|hotmail\.com|outlook\.com)" required>
+            <h1 id="h1">
+
+            </h1>
+            <button class="go-btn" id="gobtn">
+                continue
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let btn = document.getElementById("btn")
+        let input = document.getElementById("input")
+        let h1 = document.getElementById("h1")
+        let continuebtn = document.getElementById("gobtn")
+        let text = [
+            "xyz.gmail.com",
+            "xyz.hotmail.com"
+        ]
+        let i = 0
+        h1.classList.add("h1js")
+        input.classList.add("searchbar")
+        btn.onclick = function () {
+            input.style.display = "block"
+            btn.style.display = "none"
+
+        }
+
+
+        input.addEventListener("input", function () {
+
+            let value = input.value
+
+            if (value.length < 17) {
+
+                h1.style.display = "none"
+                return
+
+            }
+
+            if (
+                value.endsWith("gmail.com") ||
+                value.endsWith("hotmail.com")
+
+            ) {
+                continuebtn.style.display = "block"
+                h1.style.display = "none"
+
+            } else {
+
+                h1.style.display = "block"
+                h1.textContent = "Only gmail, hotmail allowed"
+
+            }
+
+        })
+
+        setInterval(function () {
+            input.placeholder = text[i]
+            i++
+
+            if (i >= text.length) {
+                i = 0
+            }
+        }, 5000)
+
+        text.classList.togle("text-color")
+
+    </script>
+
+</body>
+
+</html>
