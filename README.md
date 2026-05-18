@@ -1,4 +1,4 @@
 this is my first ever project that uses js and arrays <br>
-uses html css js 
-built for testing purpose
+uses html css js <br>
+built for testing purpose <br>
 [demo]()
